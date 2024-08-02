@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
 export const mainStore = defineStore('mainStore', {
-  // 真正存储数据的地方
+  // 真正存储数据的地方(共享数据)
   state() {
     return {
       innerWidth: 0, // 当前窗口宽度

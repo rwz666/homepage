@@ -11,7 +11,9 @@ body {
 
 
 
-*,a,p {
+*,
+a,
+p {
   margin: 0;
   padding: 0;
   user-select: none;
@@ -37,9 +39,20 @@ body {
 
 .cards {
   border-radius: 10px;
-  background-color:  #00000025;
+  background-color: #00000025;
   // opacity: 0.5;
   backdrop-filter: blur(10px);
+  transform: scale(1);
+
+  transition: transform 0.5s;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
 }
 
 // Transition 动画

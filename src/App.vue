@@ -1,6 +1,6 @@
 <template>
   <!-- 加载 -->
-  <Loding />
+  <!-- <Loding /> -->
   <!-- 壁纸 -->
   <Background @loadComplete="loadComplete" />
   <!-- 主界面 -->
@@ -54,6 +54,8 @@
     width: 100%;
     height: 100vh;
     padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
     .all {
       width: 100%;
       height: 100%;

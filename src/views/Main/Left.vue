@@ -16,14 +16,15 @@ import SocialLinks from '@/components/SocialLinks.vue';
     // background-color: skyblue;
     margin-right: 20px;
     transform: translateY(20px);
+    
 
     &.hidden {
         display: none;
     }
 
-    // @media (max-width: 720px){
-    //     margin-right: 0;
-    //     width: 100%;
-    // }
+    @media (max-width: 720px){
+        margin-right: 0;
+        width: 100%;
+    }
   }
 </style>

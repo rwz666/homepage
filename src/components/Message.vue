@@ -3,8 +3,7 @@
         <div class="descriptipn cards">
           <div class="content">
             <div class="text">
-              今天也要元气满满哦！
-              一个建立与21世纪的小站，存活于互联网的边缘
+              这里要放置一段话，通过变量渲染，会自动换行。111111发分厘卡撒酒疯
             </div>
           </div>
         </div>
@@ -22,6 +21,7 @@
     .descriptipn{
       padding: 1rem;
       margin-top: 3rem;
+      max-width: 500px;
       .content {
         display: flex;
         justify-content: space-between;
@@ -33,6 +33,10 @@
           margin: auto;
         }
       }
+      @media (max-width: 800px){
+        max-width: 100%;
+      }
     }
+    
   }
 </style>

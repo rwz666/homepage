@@ -46,7 +46,7 @@ window.addEventListener('mousedown', function (event) {
   // 检查是否是鼠标中键点击事件
   if (event.button === 1) {
     store.backgroundShow = !store.backgroundShow
-    console.log(`已${store.backgroundShow} ? '开启' : '关闭'壁纸展示模式`);
+    // console.log(`已${store.backgroundShow} ? '开启' : '关闭'壁纸展示模式`);
   }
 });
 

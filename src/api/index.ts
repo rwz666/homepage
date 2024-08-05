@@ -5,9 +5,18 @@
  * 地址：https://v1.hitokoto.cn/
  */
 export const getHitokoto = async () => {
-  const res = await fetch("https://v1.hitokoto.cn/");
+  const res = await fetch("https://v1.hitokoto.cn/", { mode: "no-cors" });
+  return res.json()
+}
+/**
+ * 一言备用1
+ * 地址：https://tenapi.cn/v2/yiyan
+ */
+export const getOtherHitokoto = async () => {
+  const url = new URL("https://tenapi.cn/v2/yiyan");
+  url.searchParams.append('format', 'json');
+  const res = await fetch(url);
   return await res.json();
-
 }
 
 

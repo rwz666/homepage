@@ -1,3 +1,6 @@
+@charset 'utf-8';
+
+// 全局样式
 html,
 body {
   width: 100%;
@@ -8,8 +11,6 @@ body {
   overflow: hidden;
   font-family: 'HarmonyOS_Regular', sans-serif;
 }
-
-
 
 *,
 a,
@@ -24,6 +25,12 @@ p {
   &:hover {
     transition: 0.3s;
   }
+}
+
+// 字体文件引入
+@font-face {
+  font-family: 'UnidreamLED';
+  src: url('/font/UnidreamLED.woff') format('woff');
 }
 
 

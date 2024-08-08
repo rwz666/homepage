@@ -2,10 +2,14 @@
   <div class="time-weather cards">
     <div class="time">
       <div class="date">
-        {{ curDate }}
+        <span>{{ currentTime.year }}&nbsp;年&nbsp;</span>
+        <span>{{ currentTime.month }}&nbsp;月&nbsp;</span>
+        <span>{{ currentTime.day }}&nbsp;日&nbsp;</span>
+
+        <span>{{ currentTime.weekday }}</span>
       </div>
       <div class="text">
-        {{ curTime }}
+        <span>{{ currentTime.hour }}: {{ currentTime.minute }}: {{ currentTime.second }}</span>
       </div>
     </div>
 
@@ -21,36 +25,35 @@
 
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from 'vue';
+import { onMounted, reactive, ref, onBeforeUnmount } from 'vue';
 import { getOtherWeather } from '@/api';
+import { getCurrentTime } from '@/utils/getTime'
 import debounce from '@/utils/debounce';
 
 const mainKey = import.meta.env.VITE_BAIDU_MAP_KEY;
 
+let currentTime = ref(getCurrentTime())
+
+let timeInterval: number | undefined
+
 onMounted(() => {
   // 1. 获取当前日期-时间
   getCurDateAndTime();
+  timeInterval = setInterval(getCurDateAndTime, 1000)
   // 2. 获取位置和天气
   getLocationAndWeather();
 })
-
-// 1. 获取当前日期-时间
-let curDate = ref(`2024 年 01 月 01 日 星期一`);
-let curTime = ref(new Date().toLocaleTimeString());
-
+onBeforeUnmount(() => {
+  clearInterval(timeInterval)
+})
 const getCurDateAndTime = () => {
-  // 获取当前日期
-  let curYear = ref(new Date().getFullYear());
-  let curMonth = ref(new Date().getMonth() + 1); // getMonth()返回的月份是从0开始的，所以需要加1
-  let curDay = ref(new Date().getDate());
-  let xingqi = ref(["日", "一", "二", "三", "四", "五", "六"][curDay.value]);
-  // 获取当前时间
-  curDate.value = `${curYear.value} 年 ${curMonth.value} 月 ${curDay.value} 日 星期${xingqi.value}`
-  // 每秒更新一次时间
-  setInterval(() => {
-    curTime.value = new Date().toLocaleTimeString();
-  }, 1000);
+  currentTime.value = getCurrentTime()
+  // console.log(currentTime.value)
+
 }
+
+
+
 // 2. 获取天气和位置
 let city = ref('未知地区');
 let temperature = ref(-1);

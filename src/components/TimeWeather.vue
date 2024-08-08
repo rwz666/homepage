@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="weather" @click="getLocationAndWeather">
+    <div class="weather" @click="updateLocationAndWeather">
       <span>{{ city }}</span>
       <span>{{ weather }}</span>
       <span>{{ temperature }}℃</span>
@@ -23,6 +23,7 @@
 <script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue';
 import { getOtherWeather } from '@/api';
+import debounce from '@/utils/debounce';
 
 const mainKey = import.meta.env.VITE_BAIDU_MAP_KEY;
 
@@ -86,14 +87,17 @@ const getLocation = () => {
     weatherData.location.lng = position.coords.longitude;
     let myGeo = new BMapGL.Geocoder();
     // 根据经纬度获取地址信息
-    myGeo.getLocation(new BMapGL.Point(weatherData.location.lng, weatherData.location.lat), function (result) {
+    myGeo.getLocation(new BMapGL.Point(weatherData.location.lng, weatherData.location.lat), function (result: any) {
       Object.assign(weatherData.location, result.addressComponents);
       // console.log('location:', weatherData.location);
       // console.log(result.addressComponents)
     });
   }, function (error) {
-    console.error(error);
+    console.error('获取位置信息错误', error);
   });
+  if (city.value == null || city.value == '') {
+    city.value = '未知地区'
+  }
 }
 // 2.3 获取天气
 function getTemperature(max_degree: number, min_degree: number) {
@@ -118,11 +122,14 @@ const getWeatherData = async () => {
     humidity: condition.day_humidity,
     reporttime: data.reporttime
   }
-  // console.log('result: ', data)
-  // console.log(weatherData.weather);
+}
+
+const updateLocationAndWeather = () => {
+  // 防抖 立即执行，每五秒可以执行一次
+  debounce(getLocationAndWeather, 5000, true)
 }
 // 2.4 封装函数 给界面上的元素赋值
-let requestCount = 5; //限制请求次数
+let requestCount = 3; //第一次页面刷新，防止请求失败，请求三次 限制请求次数
 async function getLocationAndWeather() {
   getLocation();
   await getWeatherData();
@@ -133,9 +140,7 @@ async function getLocationAndWeather() {
   winddirection.value = weatherData.weather.winddirection;
   windpower.value = weatherData.weather.windpower;
 
-  console.log('city: ', weatherData.location.city)
-
-  if (requestCount > 0 && city.value === '') {
+  if (requestCount > 0 && (city.value === '' || city.value === '未知地区')) {
     requestCount--;
     setTimeout(() => {
       getLocationAndWeather();

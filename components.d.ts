@@ -9,8 +9,11 @@ declare module 'vue' {
   export interface GlobalComponents {
     Background: typeof import('./src/components/Background.vue')['default']
     ElCol: typeof import('element-plus/es')['ElCol']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElRow: typeof import('element-plus/es')['ElRow']
     Hitokoto: typeof import('./src/components/Hitokoto.vue')['default']
+    IEpEdit: typeof import('~icons/ep/edit')['default']
+    IEpLink: typeof import('~icons/ep/link')['default']
     Links: typeof import('./src/components/Links.vue')['default']
     Loading: typeof import('./src/components/Loading/Loading.vue')['default']
     LoadingRotateCircle: typeof import('./src/components/Loading/LoadingRotateCircle.vue')['default']

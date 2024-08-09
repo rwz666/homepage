@@ -163,7 +163,7 @@ async function getLocationAndWeather() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px 16px;
+  padding: 20px 10px;
 
   .time {
     width: 100%;
@@ -189,6 +189,21 @@ async function getLocationAndWeather() {
     align-items: center;
     justify-content: space-around;
     margin-top: 10px;
+
+  }
+
+  @media (min-height: 160px) {
+    .time {
+      font-size: 1rem;
+
+      .text {
+        font-size: 3rem;
+      }
+
+
+    }
+
+
 
   }
 }

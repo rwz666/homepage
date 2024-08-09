@@ -1,40 +1,45 @@
 <template>
   <div class="links">
     <div class="line">
+      <el-icon :size="22" style="margin-right: 8px">
+        <!-- <Link /> -->
+        <!-- <component :is="'link'" /> -->
+        <i class="iconfont icon-link" style="font-size: 1.4rem;"></i>
+      </el-icon>
       <div class="title">网站列表</div>
     </div>
-    <swiper v-if="siteLinkList.length" :modules="[Pagination, Mousewheel]" :mousewheel="true" :space-between="20"
-      :pagination="{
-        el: '.swiper-pagination',
-        clickable: true,
-        bulletElement: 'div',
-      }">
+    <swiper v-if="siteLinkList.length" :modules="modules" :mousewheel="true" :space-between="20" :pagination="{
+      el: '.swiper-pagination',
+      clickable: true,
+      bulletElement: 'div',
+    }">
       <swiper-slide v-for="(sites, index) in siteLinkList" :key="index">
         <el-row :gutter="20" class="link-all">
           <el-col :span="8" v-for="item in sites" :key="item">
             <div class="item cards" @click="jumpLink(item)">
+              <i :class="'iconfont ' + item.icon" style="font-size: 1.2rem; margin-right:8px;"></i>
               <span>{{ item.name }}</span>
             </div>
           </el-col>
         </el-row>
       </swiper-slide>
-      <div class="swiper-pagination"></div>
+      <div class=" swiper-pagination">
+      </div>
     </swiper>
   </div>
 </template>
 
 
 <script lang="ts" setup>
-import { mainStore } from '@/store';
 import siteLinks from '@/assets/json/siteLinks.json'
+import { Icon } from '@iconify/vue'
 import { computed } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination, Mousewheel } from "swiper/modules";
-import 'swiper/swiper-bundle.css';
+import 'swiper/css';
+import 'swiper/css/pagination'
 
-
-const store = mainStore()
-
+const modules = [Pagination, Mousewheel]
 
 
 // 计算网站链接
@@ -58,7 +63,6 @@ const jumpLink = (item: any) => {
 <style lang='scss' scoped>
 .links {
   width: 100%;
-  // background-color: #fff;
   border-radius: 10px;
   padding: 10px;
   overflow: hidden;
@@ -67,12 +71,20 @@ const jumpLink = (item: any) => {
     display: flex;
     margin: 1.4rem 0.6rem 1rem;
     align-items: center;
+    justify-content: left;
 
     .title {
       font-size: 1.2rem;
-      font-weight: bold;
+      font-weight: 400;
       text-shadow: 0 0 5px #00000050;
     }
+
+  }
+
+  .el-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
   }
 

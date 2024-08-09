@@ -25,6 +25,7 @@ import Hitokoto from '@/components/Hitokoto.vue';
 <style lang="scss" scoped>
 .function {
   height: 160px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;

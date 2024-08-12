@@ -5,7 +5,7 @@
  * 地址：https://v1.hitokoto.cn/
  */
 export const getHitokoto = async () => {
-  const res = await fetch("https://v1.hitokoto.cn/", { mode: "no-cors" });
+  const res = await fetch("https://v1.hitokoto.cn/");
   return res.json()
 }
 /**

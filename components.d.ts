@@ -10,6 +10,7 @@ declare module 'vue' {
     Background: typeof import('./src/components/Background.vue')['default']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElProgress: typeof import('element-plus/es')['ElProgress']
     ElRow: typeof import('element-plus/es')['ElRow']
     Hitokoto: typeof import('./src/components/Hitokoto.vue')['default']
     IEpEdit: typeof import('~icons/ep/edit')['default']

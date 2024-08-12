@@ -27,7 +27,8 @@ const msg = reactive({
 async function getMessage() {
   let f = getMessage1()
   // console.log(f)
-  if (!f) getMessage2()
+  if (!f) f = getMessage2()
+  if (!f) ElMessage.error('获取一言失败')
 
 }
 const updateHitokoto = () => {
@@ -51,13 +52,13 @@ function getMessage2() {
     let data = result.data
     msg.hitokoto = data.hitokoto
     msg.from = (data.source != '' ? data.source : '网络')
+    return true//成功获取
     // console.log(msg)
     // console.log(data)
   }).catch(e => {
     console.log('一言接口2获取失败,', e)
-    msg.hitokoto = '你若安好便是晴天'
-    msg.from = '林清玄'
   })
+  return false//获取失败
 
 }
 

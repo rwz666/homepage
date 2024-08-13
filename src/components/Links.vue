@@ -23,16 +23,16 @@
           </el-col>
         </el-row>
       </swiper-slide>
-      <div class=" swiper-pagination">
-      </div>
+      
     </swiper>
+    <div class="swiper-pagination">
+    </div>
   </div>
 </template>
 
 
 <script lang="ts" setup>
 import siteLinks from '@/assets/json/siteLinks.json'
-import { Icon } from '@iconify/vue'
 import { computed } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination, Mousewheel } from "swiper/modules";
@@ -62,10 +62,12 @@ const jumpLink = (item: any) => {
 
 <style lang='scss' scoped>
 .links {
+  position: relative;
   width: 100%;
   border-radius: 10px;
   padding: 10px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   .line {
     display: flex;
@@ -89,40 +91,10 @@ const jumpLink = (item: any) => {
   }
 
   .swiper {
-    position: relative;
+    // position: relative;
     width: 100%;
-    height: 100%;
-    display: flex;
-
-
-    .swiper-pagination {
-      // position: static;
-      // margin-top: 12px;
-      bottom: 0;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      // transform: translateY(10px);
-
-      :deep(.swiper-pagination-bullet) {
-        background-color: #fff;
-        width: 20px;
-        height: 4px;
-        margin: 0 4px;
-        border-radius: 4px;
-        opacity: 0.2;
-        transition: opacity 0.3s;
-
-        &.swiper-pagination-bullet-active {
-          opacity: 1;
-        }
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
+    margin-bottom: 1rem;
+    
 
     .link-all {
       height: 220px;
@@ -136,5 +108,30 @@ const jumpLink = (item: any) => {
       }
     }
   }
+
+  .swiper-pagination {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    :deep(.swiper-pagination-bullet) {
+    background-color: #fff;
+    width: 20px;
+    height: 4px;
+    margin: 0 4px;
+    border-radius: 4px;
+    opacity: 0.2;
+    transition: opacity 0.3s;
+
+    &.swiper-pagination-bullet-active {
+      opacity: 1;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+  }
+  
 }
 </style>

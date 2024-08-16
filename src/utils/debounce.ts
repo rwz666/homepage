@@ -1,4 +1,5 @@
-// 防抖
+// 防抖，传一个参数表示延迟时间
+// 第二个参数表示是否立即执行，表示在一定时间内，只执行第一次
 let timeout: number | null = null
 
 function debounce(func: Function, wait = 300, immediate = false) {

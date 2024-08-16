@@ -4,8 +4,9 @@
   <!-- 壁纸 -->
   <Background @loadComplete="loadComplete" />
   <!-- 主界面 -->
-  <main id="main">
-    <div class="container">
+  <main id="main" v-if="store.imgLoadStatus">
+    <div id="header-menu"></div>
+    <div class="container" v-show="!store.backgroundShow">
       <div class="all">
         <MainLeft />
         <MainRight />
@@ -24,12 +25,10 @@ import Background from '@/components/Background.vue'
 import Loding from '@/components/Loading/LoadingRotateCircle.vue'
 // import Loding from '@/components/Loading/Loading.vue'
 import { mainStore } from './store';
-import MainLeft from '@/views/Main/Left.vue';
-import MainRight from '@/views/Main/Right.vue';
-
+import MainLeft from '@/views/Home/Main/Left.vue';
+import MainRight from '@/views/Home/Main/Right.vue';
 
 const store = mainStore()
-
 // 关在完成事件
 onMounted(() => {
   //自定义鼠标

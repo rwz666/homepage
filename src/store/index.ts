@@ -8,7 +8,7 @@ export const mainStore = defineStore('mainStore', {
       imgLoadStatus: false, // 背景加载状态
       backgroundShow: false, // 背景是否展示
       coverType: 0, //壁纸种类
-      boxShowStatus: true, // 盒子展示状态
+      boxShowStatus: false, // 盒子展示状态(时间胶囊)
     }
   },
   getters: {

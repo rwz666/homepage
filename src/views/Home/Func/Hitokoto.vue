@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import { getHitokoto, getOtherHitokoto } from '@/api';
-import { ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus'
 import { onMounted, reactive, ref } from 'vue';
 import debounce from '@/utils/debounce'
 
@@ -25,41 +25,36 @@ const msg = reactive({
 })
 // 获取一言数据
 async function getMessage() {
-  let f = getMessage1()
-  // console.log(f)
-  if (!f) f = getMessage2()
-  if (!f) ElMessage.error('获取一言失败')
+  let result
+  result = await getMessage1()
+  if (result) return;
+  result = await getMessage2()
 
+  if (result) return;
+  ElMessage({
+    showClose: true,
+    message: '获取一言失败',
+    type: 'error',
+  })
 }
 const updateHitokoto = () => {
-  // 防抖
+  // 防抖 500ms
   debounce(() => {
     getMessage()
   }, 500)
 }
 // 调用api获取一言
-function getMessage1() {
-  getHitokoto().then(result => {
-    Object.assign(msg, result)
-    return true
-  }).catch(e => {
-    console.log('一言接口1获取失败', e)
-  })
-  return false
+async function getMessage1() {
+  const result = await getHitokoto()
+  Object.assign(msg, result)
+  return result
 }
-function getMessage2() {
-  getOtherHitokoto().then(result => {
-    let data = result.data
-    msg.hitokoto = data.hitokoto
-    msg.from = (data.source != '' ? data.source : '网络')
-    return true//成功获取
-    // console.log(msg)
-    // console.log(data)
-  }).catch(e => {
-    console.log('一言接口2获取失败,', e)
-  })
-  return false//获取失败
-
+async function getMessage2() {
+  let result = await getOtherHitokoto()
+  let data = result.data
+  msg.hitokoto = data.hitokoto
+  msg.from = (data.source != '' ? data.source : '网络')
+  return result
 }
 
 

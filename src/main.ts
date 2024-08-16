@@ -3,7 +3,8 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import '@/style/style.scss'
-import '../public/iconfont/iconfont.css'
+import '@/assets/font/iconfont/iconfont.css'
+import 'element-plus/dist/index.css'
 
 
 //创建app实例

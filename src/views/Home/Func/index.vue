@@ -17,8 +17,8 @@
 
 
 <script lang="ts" setup>
-import TimeWeather from '@/views/Func/TimeWeather.vue';
-import Hitokoto from '@/views/Func/Hitokoto.vue';
+import TimeWeather from '@/views/Home/Func/TimeWeather.vue';
+import Hitokoto from '@/views/Home/Func/Hitokoto.vue';
 </script>
 
 

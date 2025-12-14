@@ -15,9 +15,9 @@
 </template>
 
 <script lang="ts" setup>
-import Func from '@/views/Home/Func/index.vue'
-import Links from '@/components/Links.vue'
-import Box from '@/views/Home/Box/index.vue'
+import Func from '@/components/Home/Func/index.vue'
+import Links from '@/components/Home/Links.vue'
+import Box from '@/components/Home/Box/index.vue'
 import { mainStore } from '@/store';
 
 const store = mainStore()

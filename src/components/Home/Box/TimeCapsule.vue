@@ -28,7 +28,6 @@
 
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
 import { getTimeCapsule } from '@/utils/getTime';
 
 let timeCapsule = ref(getTimeCapsule())

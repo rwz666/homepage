@@ -1,13 +1,13 @@
 <template>
   <div class="right">
 
-    <div class="baseShow" v-if="!store.boxShowStatus">
+    <div class="baseShow" v-if="!store.boxOpenState">
       <!-- 展示小功能区域（音乐播放器和时钟） -->
       <Func />
       <!-- 链接内容区域 -->
       <Links />
     </div>
-    <div class="extendShow" v-if="store.boxShowStatus">
+    <div class="extendShow" v-if="store.boxOpenState">
       <Box />
     </div>
 

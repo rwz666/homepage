@@ -12,9 +12,12 @@
     <!-- 简介 -->
     <div class="descriptipn cards" @click="changeBoxOrMessage">
       <div class="content">
-        <div class="text">
-          欢迎访问本站点！
-        </div>
+        <Transition name="fade" mode="out-in">
+          <div :key="descriptionText.hello + descriptionText.text" class="text">
+            <p>{{ descriptionText.hello }}</p>
+            <p>{{ descriptionText.text }}</p>
+          </div>
+        </Transition>
       </div>
     </div>
   </div>
@@ -39,10 +42,31 @@ const siteUrl = computed(() => {
   return url.split(".");
 });
 
+// 简介区域文字
+const descriptionText = reactive({
+  hello: import.meta.env.VITE_DESC_HELLO,
+  text: import.meta.env.VITE_DESC_TEXT,
+});
+
+
 const changeBoxOrMessage = () => {
-  store.boxShowStatus = !store.boxShowStatus
-  console.log('切换盒子展示状态', store.boxShowStatus)
+  store.boxOpenState = !store.boxOpenState
+  console.log('切换盒子展示状态', store.boxOpenState)
 }
+
+// 监听状态变化
+watch(
+  () => store.boxOpenState,
+  (value) => {
+    if (value) {
+      descriptionText.hello = import.meta.env.VITE_DESC_HELLO_OTHER;
+      descriptionText.text = import.meta.env.VITE_DESC_TEXT_OTHER;
+    } else {
+      descriptionText.hello = import.meta.env.VITE_DESC_HELLO;
+      descriptionText.text = import.meta.env.VITE_DESC_TEXT;
+    }
+  },
+);
 </script>
 
 <style lang="scss" scoped>
@@ -65,16 +89,16 @@ const changeBoxOrMessage = () => {
     .name {
       width: 100%;
       padding-left: 22px;
-      transform: translateY(-8px);
-      font-family: "Pacifico-Regular";
+      transform: translateY(8px);
+      font-family: "AnakCute";
 
       .bg {
-        font-size: 5rem;
+        font-size: 8rem;
       }
 
       .sm {
         margin-left: 6px;
-        font-size: 2rem;
+        font-size: 4rem;
 
         @media (min-width: 720px) and (max-width: 789px) {
           display: none;
@@ -111,16 +135,26 @@ const changeBoxOrMessage = () => {
       justify-content: space-between;
 
       .text {
-        // text-align: center;
-        text-decoration: none;
+        margin: 0.75rem 1rem;
         line-height: 2rem;
-        ;
-        margin: auto;
+        margin-right: auto;
+        transition: opacity 0.2s;
+
+        p {
+          &:nth-of-type(1) {
+            font-family: "AnakCute";
+          }
+        }
+      }
+
+      .xicon:nth-of-type(2) {
+        align-self: flex-end;
       }
     }
 
     @media (max-width: 800px) {
       max-width: 100%;
+      pointer-events: none;
     }
   }
 

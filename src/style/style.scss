@@ -33,6 +33,19 @@ p {
   src: url('/font/UnidreamLED.woff') format('woff');
 }
 
+@font-face {
+  font-family: "Pacifico-Regular";
+  font-display: swap;
+  src: url("/font/English/Pacifico-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "AnakCute";
+  font-display: swap;
+  src: url("/font/English/AnakCute-513pv.ttf") format("truetype");
+}
+
+
 
 // 基础样式
 #app {

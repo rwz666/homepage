@@ -92,7 +92,8 @@ const getLocation = () => {
     // 根据经纬度获取地址信息
     myGeo.getLocation(new BMapGL.Point(weatherData.location.lng, weatherData.location.lat), function (result: any) {
       Object.assign(weatherData.location, result.addressComponents);
-      // console.log('location:', weatherData.location);
+      console.log('location:', weatherData.location);
+      city.value = weatherData.location.city
       // console.log(result.addressComponents)
     });
   }, function (error) {

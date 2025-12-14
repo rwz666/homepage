@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="time-weather cards">
     <div class="time">
       <div class="date">
@@ -184,4 +184,4 @@ async function getLocationAndWeather() {
 
   }
 }
-</style>
+</style> -->
